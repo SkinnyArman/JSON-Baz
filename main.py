@@ -357,6 +357,7 @@ def scrape_url_to_json(url):
      
     payments_div = soup.find('div', class_="css-1pch3j1")
     if payments_div:
+        scraped_data["paymentMethods"] = {}
         scraped_data["paymentMethods"]["title"] = payments_div.find("h2").text
         scraped_data["paymentMethods"]["image"] = { "src": "", "alt": "" }
         scraped_data["paymentMethods"]["methods"] = []
