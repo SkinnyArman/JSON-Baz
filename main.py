@@ -426,18 +426,19 @@ def scrape_url_to_json(url):
             dic = {}
             dic["title"] = innerHTML(div.find('h3'))
             dic["description"] = innerHTML(div.find('p'))
-            title = dic["title"] + '.svg'
-            with open(title, 'w') as file:
-                file.write(str(div.find('svg')))
-            with open(title, 'rb') as f:
-                files = {
-                    'image': (title, f)
-                }
-                r = requests.post(WHEN_TO_CHOOSE_URL, files=files)
-            dic["image"] = {
-                "alt": "icon image",  
-                "src": "https://dev6.cloudzy.com/static/landing/whenToChoose/{}.svg".format(dic["title"])
-            }
+            dic["icon"] = str(div.find('svg'))
+            # title = dic["title"] + '.svg'
+            # with open(title, 'w') as file:
+            #     file.write(str(div.find('svg')))
+            # with open(title, 'rb') as f:
+            #     files = {
+            #         'image': (title, f)
+            #     }
+            #     r = requests.post(WHEN_TO_CHOOSE_URL, files=files)
+            # dic["image"] = {
+            #     "alt": "icon image",  
+            #     "src": "https://dev6.cloudzy.com/static/landing/whenToChoose/{}.svg".format(dic["title"])
+            # }
             scraped_data["whenToChoose"]["items"].append(dic)
 
     cta_div = soup.find('div', class_="MuiGrid-root MuiGrid-container css-1jj7jpf")
