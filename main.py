@@ -461,6 +461,6 @@ if __name__ == '__main__':
     # Scrape the URL and get JSON
     result = scrape_url_to_json(url)
     # Print or save the JSON
-    with open('data.json', 'w') as file:
+    with open(sys.argv[1].split('/')[-1]+".json", 'w') as file:
         json.dump(result, file, indent=4)
     #print(json.dumps(result, indent=4))
