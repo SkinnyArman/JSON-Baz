@@ -253,7 +253,10 @@ def scrape_url_to_json(url):
         }      
         scraped_data["introduction"]["features"] = []
         for div in intro_div.find('div', class_="MuiGrid-root MuiGrid-container css-cpkics").find_all('p'):
-            scraped_data["introduction"]["features"].append(div.text)
+            if div.find('a'):
+                scraped_data["introduction"]["features"].append(str(div.find('a')))
+            else:
+                scraped_data["introduction"]["features"].append(div.text)
 
     suspected_platforms_divs = []
     platforms_div = soup.find('div', class_ ='css-4we2yn')
