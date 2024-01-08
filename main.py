@@ -416,6 +416,16 @@ def scrape_url_to_json(url):
                     "src": "https://dev6.cloudzy.com/static/testimonial/diya-dean.webp",
                     "alt": "some random girl's face"
                 }
+            if ("Franco" in dic["writerInfo"]["name"]):
+                dic["writerInfo"]["image"] = {
+                    "src": "https://dev6.cloudzy.com/static/testimonial/franco-pitts.webp",
+                    "alt": "some random guy's face"
+                }
+            if ("Kyla" in dic["writerInfo"]["name"]):
+                dic["writerInfo"]["image"] = {
+                    "src": "https://dev6.cloudzy.com/static/testimonial/kyla-carpenter.webp",
+                    "alt": "some random woman's face"
+                }
             dic["rating"] = len(div.find_all('span', class_="css-13m1if9"))
             scraped_data["testimonial"]["slides"].append(dic)
 
