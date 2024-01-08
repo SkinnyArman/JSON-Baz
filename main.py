@@ -223,9 +223,14 @@ def scrape_url_to_json(url):
                         "period":'m'
                     }
                     card_dic["pricing"]["perHour"] = {
-                        "price": float(card.find('div', class_="mt-2 min-h-[21px] w-full").find_all('p')[1].text[1:-1]),
-                        "period":'h'
+                        "price": "",
+                        "period": "h"
                     }
+                    hourly_price = card.find('div', class_="mt-2 min-h-[21px] w-full").find_all('p')
+                    if hourly_price:
+                        card_dic["pricing"]["perHour"]["price"] = float(hourly_price[1].text[1:-1])
+                    else:
+                        card_dic["pricing"]["perHour"]["price"] = ""
                 scraped_data["pricing"][key].append(card_dic)
 
     intro_div = soup.find('div', class_="MuiGrid-root MuiGrid-container css-1c87emg")
