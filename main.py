@@ -172,6 +172,9 @@ def scrape_url_to_json(url):
                 #most_popular or not
                 card_dic["isPopular"] = False
                 card_dic["isCustom"] = False
+                card_dic["isActive"] = True
+                if card.find('button', class_="cursor-default bg-grey-200 text-grey-400 border-0 w-full px-5 py-2 rounded px-4 py-1.5 font-sans text-buttonSmall transition duration-300"):
+                    card_dic["isActive"] = False
                 card_dic["image"] = {
                     #hardcoded example
                     "src": "https://dev6.cloudzy.com/static/pricing/linux.webp" if len(card_dic["planSpec"]) > 0 and card_dic["planSpec"][0]["title"] == "1 GB" else "https://dev6.cloudzy.com/static/pricing/windows.webp",
